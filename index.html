@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1024">
+<title>Mai & Binh's Fridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-cream: #fdf6ec;
+    --bg-warm: #f9eed8;
+    --bg-card: rgba(255, 255, 255, 0.6);
+    --border-card: rgba(192, 112, 74, 0.15);
+    --accent-amber: #d4913a;
+    --accent-terracotta: #b85c3a;
+    --accent-clay: #c0704a;
+    --accent-rust: #a04828;
+    --accent-gold: #c8922e;
+    --accent-blush: #d4897a;
+    --accent-peach: #e8b89a;
+    --text-primary: #3a2518;
+    --text-secondary: #5c3d28;
+    --text-muted: #9a7e6a;
+  }
+
+  html, body {
+    width: 1024px;
+    height: 600px;
+    overflow: hidden;
+    background: var(--bg-cream);
+    font-family: 'Outfit', sans-serif;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ── Ambient background blobs ── */
+  .ambient {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    filter: blur(100px);
+    opacity: 0.4;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+
+  .blob-1 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, var(--accent-peach) 0%, transparent 70%);
+    top: -100px; left: -80px;
+    animation-delay: 0s;
+  }
+  .blob-2 {
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, #f5d6a8 0%, transparent 70%);
+    bottom: -120px; right: -60px;
+    animation-delay: -7s;
+  }
+  .blob-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, var(--accent-blush) 0%, transparent 70%);
+    top: 140px; left: 420px;
+    animation-delay: -14s;
+  }
+
+  @keyframes drift {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(60px, -40px) scale(1.12); }
+    66%  { transform: translate(-40px, 50px) scale(0.92); }
+    100% { transform: translate(30px, -20px) scale(1.05); }
+  }
+
+  /* ── Floating food emojis ── */
+  .floaters {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .floater {
+    position: absolute;
+    font-size: 22px;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(620px) rotate(0deg); opacity: 0; }
+    8%   { opacity: 0.55; }
+    92%  { opacity: 0.55; }
+    100% { transform: translateY(-30px) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── Grain overlay ── */
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px;
+  }
+
+  /* ── Main content — horizontal layout ── */
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    padding: 36px 52px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 24px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 4px 40px rgba(160, 72, 40, 0.08),
+                0 1px 3px rgba(160, 72, 40, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    animation: cardIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  @keyframes cardIn {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── Left side: icon ── */
+  .icon-side {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .fridge-emoji {
+    font-size: 72px;
+    display: block;
+    animation: iconPop 0.8s 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    filter: drop-shadow(0 4px 16px rgba(192, 112, 74, 0.2));
+  }
+
+  @keyframes iconPop {
+    0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .fridge-emoji .pulse {
+    display: inline-block;
+    animation: iconBreathe 3s ease-in-out infinite;
+  }
+
+  @keyframes iconBreathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.08); }
+  }
+
+  .temp-display {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeIn 0.8s 2.4s both;
+  }
+
+  /* ── Right side: text ── */
+  .text-side {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* ── Title — single line ── */
+  .title-line {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .title-line .mai {
+    display: inline-block;
+    animation: nameSlide 0.9s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    background: linear-gradient(135deg, var(--accent-rust), var(--accent-terracotta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-line .amp {
+    display: inline-block;
+    animation: nameSlide 0.9s 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    font-style: italic;
+    -webkit-text-fill-color: var(--text-muted);
+    margin: 0 2px;
+    font-size: 0.68em;
+  }
+
+  .title-line .binh {
+    display: inline-block;
+    animation: nameSlide 0.9s 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    background: linear-gradient(135deg, var(--accent-clay), var(--accent-amber));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-line .possessive {
+    display: inline-block;
+    animation: nameSlide 0.9s 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    -webkit-text-fill-color: var(--text-muted);
+    font-size: 0.82em;
+  }
+
+  .title-line .fridge-word {
+    display: inline-block;
+    animation: nameSlide 0.9s 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-left: 6px;
+  }
+
+  @keyframes nameSlide {
+    0%   { transform: translateY(30px); opacity: 0; filter: blur(8px); }
+    100% { transform: translateY(0); opacity: 1; filter: blur(0); }
+  }
+
+  /* ── Divider ── */
+  .divider {
+    width: 80px;
+    height: 2px;
+    margin: 12px 0;
+    background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-peach), transparent);
+    animation: fadeIn 1s 1.6s both;
+    border-radius: 1px;
+  }
+
+  @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+  /* ── Tagline ── */
+  .tagline {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    animation: fadeIn 1s 1.8s both;
+  }
+
+  /* ── Clock — bottom center ── */
+  .clock {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+    animation: fadeIn 1s 2.2s both;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(192, 112, 74, 0.12);
+    padding: 8px 24px;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    white-space: nowrap;
+    box-shadow: 0 2px 12px rgba(160, 72, 40, 0.06);
+  }
+
+  /* ── Baby badge — top right ── */
+  .baby-badge {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    z-index: 3;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--accent-terracotta);
+    letter-spacing: 0.06em;
+    animation: fadeIn 1s 2.5s both;
+    background: rgba(192, 112, 74, 0.08);
+    border: 1px solid rgba(192, 112, 74, 0.15);
+    padding: 6px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(160, 72, 40, 0.06);
+  }
+
+  .baby-badge .heart {
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15%      { transform: scale(1.25); }
+    30%      { transform: scale(1); }
+    45%      { transform: scale(1.2); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Ambient background -->
+  <div class="ambient">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Floating food emojis -->
+  <div class="floaters" id="floaters"></div>
+
+  <!-- Grain texture -->
+  <div class="grain"></div>
+
+  <!-- Main content — horizontal layout -->
+  <div class="content">
+    <div class="icon-side">
+      <div class="fridge-emoji"><span class="pulse">🍽️</span></div>
+      <div class="temp-display">37°F</div>
+    </div>
+    <div class="text-side">
+      <div class="title-line">
+        <span class="mai">Mai</span><span class="amp">&</span><span class="binh">Binh</span><span class="possessive">'s</span><span class="fridge-word">Fridge</span>
+      </div>
+      <div class="divider"></div>
+      <div class="tagline">Always Fresh • Always Stocked</div>
+    </div>
+  </div>
+
+  <!-- Baby badge -->
+  <div class="baby-badge">
+    <span class="heart">👶</span> Baby arriving July 2026
+  </div>
+
+  <!-- Clock -->
+  <div class="clock" id="clock"></div>
+
+  <script>
+    // ── Live clock ──
+    function updateClock() {
+      var now = new Date();
+      var h = now.getHours();
+      var m = now.getMinutes();
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      h = h % 12 || 12;
+      m = m < 10 ? '0' + m : m;
+
+      var days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+      var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+                    'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+      var day = days[now.getDay()];
+      var month = months[now.getMonth()];
+      var date = now.getDate();
+
+      document.getElementById('clock').textContent =
+        day + '  ' + month + ' ' + date + '  \u2022  ' + h + ':' + m + ' ' + ampm;
+    }
+    updateClock();
+    setInterval(updateClock, 10000);
+
+    // ── Floating food emojis ──
+    var foods = ['\uD83E\uDD51', '\uD83C\uDF53', '\uD83E\uDDC0', '\uD83E\uDD55',
+                 '\uD83C\uDF4B', '\uD83E\uDD66', '\uD83C\uDF47', '\uD83E\uDD5A',
+                 '\uD83C\uDF4E', '\uD83E\uDD5B', '\uD83C\uDF4A', '\uD83E\uDED0',
+                 '\uD83E\uDD6C', '\uD83E\uDDC8', '\uD83C\uDF4C', '\uD83E\uDD69',
+                 '\uD83C\uDF51', '\uD83C\uDF3D', '\uD83E\uDD5D', '\uD83C\uDF45'];
+    var container = document.getElementById('floaters');
+
+    function spawnFloater() {
+      var el = document.createElement('span');
+      el.className = 'floater';
+      el.textContent = foods[Math.floor(Math.random() * foods.length)];
+      el.style.left = (Math.random() * 90 + 5) + '%';
+      var dur = Math.random() * 10 + 16;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = '0s';
+      container.appendChild(el);
+
+      setTimeout(function() {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, dur * 1000);
+    }
+
+    // Initial burst
+    for (var i = 0; i < 6; i++) {
+      setTimeout(spawnFloater, i * 700);
+    }
+    // Continuous spawning
+    setInterval(spawnFloater, 3500);
+  </script>
+</body>
+</html>
