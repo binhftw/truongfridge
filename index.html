@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1024">
-<title>Mai & Binh's Fridge</title>
+<title>Mai & Binh's Baby Shower</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --accent-amber: #d4913a;
-    --accent-terracotta: #b85c3a;
-    --accent-clay: #c0704a;
-    --accent-rust: #a04828;
-    --accent-gold: #c8922e;
-    --accent-blush: #d4897a;
-    --accent-peach: #e8b89a;
-    --text-primary: #3a2518;
-    --text-muted: #9a7e6a;
+    --accent-lavender: #a890cc;
+    --accent-blush: #cc7890;
+    --accent-mint: #5ab89c;
+    --accent-rose: #b85070;
+    --accent-yellow: #c8a83a;
+    --accent-peach: #f0b8c0;
+    --accent-soft-mint: #a8dcc8;
+    --text-primary: #2d2538;
+    --text-muted: #8a7898;
   }
 
   html, body {
@@ -33,10 +33,10 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background: radial-gradient(ellipse at 20% 30%, #f9e4cc 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, #fde8d4 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, #f5ddc8 0%, transparent 60%),
-                #fdf6ec;
+    background: radial-gradient(ellipse at 20% 30%, #fff0d8 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, #d8f0e8 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 10%, #ede0f8 0%, transparent 50%),
+                #fdfaf8;
   }
 
   /* ── Fixed decorative emojis ── */
@@ -67,10 +67,10 @@
     gap: 52px;
     padding: 48px 64px;
     background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(192, 112, 74, 0.15);
+    border: 1px solid rgba(168, 144, 204, 0.15);
     border-radius: 28px;
-    box-shadow: 0 4px 40px rgba(160, 72, 40, 0.08),
-                0 1px 3px rgba(160, 72, 40, 0.06);
+    box-shadow: 0 4px 40px rgba(168, 144, 204, 0.08),
+                0 1px 3px rgba(168, 144, 204, 0.06);
     animation: cardIn 1s ease-out forwards;
     opacity: 0;
     transform: translateY(16px);
@@ -110,16 +110,6 @@
     50%      { transform: scale(1.06); }
   }
 
-  .temp-display {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--accent-terracotta);
-    letter-spacing: 0.1em;
-    opacity: 0;
-    animation: fadeIn 0.6s 1.8s both;
-  }
-
   /* ── Right side: text ── */
   .text-side {
     display: flex;
@@ -130,7 +120,7 @@
   .title-line {
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
-    font-size: 74px;
+    font-size: 62px;
     line-height: 1.05;
     color: var(--text-primary);
     letter-spacing: -0.02em;
@@ -140,7 +130,7 @@
   .title-line .mai {
     display: inline-block;
     animation: nameSlide 0.8s 0.5s ease-out both;
-    background: linear-gradient(135deg, var(--accent-rust), var(--accent-terracotta));
+    background: linear-gradient(135deg, var(--accent-rose), var(--accent-blush));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -158,7 +148,7 @@
   .title-line .binh {
     display: inline-block;
     animation: nameSlide 0.8s 0.8s ease-out both;
-    background: linear-gradient(135deg, var(--accent-clay), var(--accent-amber));
+    background: linear-gradient(135deg, var(--accent-mint), var(--accent-yellow));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -171,10 +161,10 @@
     font-size: 0.78em;
   }
 
-  .title-line .fridge-word {
+  .title-line .shower-word {
     display: inline-block;
     animation: nameSlide 0.8s 1s ease-out both;
-    background: linear-gradient(135deg, var(--accent-gold), var(--accent-terracotta));
+    background: linear-gradient(135deg, var(--accent-lavender), var(--accent-blush));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -191,7 +181,7 @@
     width: 100px;
     height: 3px;
     margin: 14px 0;
-    background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-peach), transparent);
+    background: linear-gradient(90deg, var(--accent-blush), var(--accent-soft-mint), transparent);
     animation: fadeIn 0.8s 1.3s both;
     border-radius: 2px;
   }
@@ -223,80 +213,41 @@
     letter-spacing: 0.08em;
     animation: fadeIn 0.8s 1.8s both;
     background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(192, 112, 74, 0.12);
+    border: 1px solid rgba(168, 144, 204, 0.12);
     padding: 10px 28px;
     border-radius: 999px;
     white-space: nowrap;
-    box-shadow: 0 2px 12px rgba(160, 72, 40, 0.06);
+    box-shadow: 0 2px 12px rgba(168, 144, 204, 0.06);
   }
 
-  /* ── Baby badge ── */
-  .baby-badge {
-    position: fixed;
-    top: 20px;
-    right: 26px;
-    z-index: 3;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--accent-terracotta);
-    letter-spacing: 0.06em;
-    animation: fadeIn 0.8s 2s both;
-    background: rgba(192, 112, 74, 0.1);
-    border: 1px solid rgba(192, 112, 74, 0.15);
-    padding: 8px 16px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 8px rgba(160, 72, 40, 0.06);
-  }
-
-  .baby-badge .heart {
-    display: inline-block;
-    animation: heartbeat 1.5s ease-in-out infinite;
-  }
-
-  @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    15%      { transform: scale(1.2); }
-    30%      { transform: scale(1); }
-    45%      { transform: scale(1.15); }
-  }
 </style>
 </head>
 <body>
 
   <!-- Fixed decorative emojis -->
-  <span class="deco d1">🥑</span>
-  <span class="deco d2">🍓</span>
-  <span class="deco d3">🧀</span>
-  <span class="deco d4">🥕</span>
-  <span class="deco d5">🍋</span>
-  <span class="deco d6">🍇</span>
-  <span class="deco d7">🥦</span>
-  <span class="deco d8">🍊</span>
-  <span class="deco d9">🍎</span>
-  <span class="deco d10">🥚</span>
+  <span class="deco d1">🍼</span>
+  <span class="deco d2">👶</span>
+  <span class="deco d3">🧸</span>
+  <span class="deco d4">🎀</span>
+  <span class="deco d5">🌙</span>
+  <span class="deco d6">⭐</span>
+  <span class="deco d7">🧷</span>
+  <span class="deco d8">🎉</span>
+  <span class="deco d9">💛</span>
+  <span class="deco d10">🤍</span>
 
   <!-- Main content -->
   <div class="content">
     <div class="icon-side">
-      <div class="fridge-emoji"><span class="pulse">🍽️</span></div>
-      <div class="temp-display">37°F</div>
+      <div class="fridge-emoji"><span class="pulse">🍼</span></div>
     </div>
     <div class="text-side">
       <div class="title-line">
-        <span class="mai">Mai</span><span class="amp">&</span><span class="binh">Binh</span><span class="possessive">'s</span><span class="fridge-word">Fridge</span>
+        <span class="mai">Mai</span><span class="amp">&</span><span class="binh">Binh</span><span class="possessive">'s</span><span class="shower-word">Baby Shower</span>
       </div>
       <div class="divider"></div>
-      <div class="tagline">Always Fresh • Always Stocked</div>
+      <div class="tagline">A Little One Is On The Way</div>
     </div>
-  </div>
-
-  <!-- Baby badge -->
-  <div class="baby-badge">
-    <span class="heart">👶</span> Baby arriving July 2026
   </div>
 
   <!-- Clock -->
