@@ -5,27 +5,27 @@
 <meta name="viewport" content="width=1024">
 <title>Mai & Binh's Baby Shower</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --accent-lavender: #a890cc;
-    --accent-blush: #cc7890;
-    --accent-mint: #5ab89c;
-    --accent-rose: #b85070;
-    --accent-yellow: #c8a83a;
-    --accent-peach: #f0b8c0;
-    --accent-soft-mint: #a8dcc8;
-    --text-primary: #2d2538;
-    --text-muted: #8a7898;
+    --brown-dark: #3e1f0d;
+    --brown: #5c3317;
+    --brown-light: #8b5e3c;
+    --cream: #fdf8f0;
+    --cream-dark: #f5ead6;
+    --gold: #c49b63;
+    --pink: #f2a6b8;
+    --pink-light: #fce4ec;
+    --white: #fffef9;
   }
 
   html, body {
     width: 1024px;
     height: 600px;
     overflow: hidden;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'DM Sans', sans-serif;
   }
 
   body {
@@ -33,88 +33,67 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background: radial-gradient(ellipse at 20% 30%, #fff0d8 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, #d8f0e8 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 10%, #ede0f8 0%, transparent 50%),
-                #fdfaf8;
+    background: radial-gradient(ellipse at 20% 30%, #f5ead6 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 70%, #fce4ec 0%, transparent 55%),
+                #fdf8f0;
   }
 
-  /* ── Fixed decorative emojis ── */
   .deco {
     position: fixed;
     z-index: 0;
-    opacity: 0.16;
-    font-size: 32px;
+    opacity: 0.13;
+    font-size: 30px;
   }
 
-  .d1  { top: 6%;   left: 5%; }
-  .d2  { top: 74%;  left: 10%; }
-  .d3  { top: 12%;  right: 7%; }
+  .d1  { top: 6%;     left: 5%; }
+  .d2  { top: 74%;    left: 10%; }
+  .d3  { top: 12%;    right: 7%; }
   .d4  { bottom: 12%; right: 10%; }
-  .d5  { top: 42%;  left: 2%; }
-  .d6  { bottom: 6%; left: 35%; }
-  .d7  { top: 6%;   left: 40%; }
-  .d8  { top: 60%;  right: 3%; }
+  .d5  { top: 42%;    left: 2%; }
+  .d6  { bottom: 6%;  left: 35%; }
+  .d7  { top: 6%;     left: 40%; }
+  .d8  { top: 60%;    right: 3%; }
   .d9  { bottom: 18%; left: 20%; }
-  .d10 { top: 30%;  right: 16%; }
+  .d10 { top: 30%;    right: 16%; }
 
-  /* ── Main content card ── */
   .content {
     position: relative;
     z-index: 2;
     display: flex;
     align-items: center;
     gap: 52px;
-    padding: 48px 64px;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(168, 144, 204, 0.15);
-    border-radius: 28px;
-    box-shadow: 0 4px 40px rgba(168, 144, 204, 0.08),
-                0 1px 3px rgba(168, 144, 204, 0.06);
-    animation: cardIn 1s ease-out forwards;
-    opacity: 0;
-    transform: translateY(16px);
+    padding: 44px 60px;
+    background: rgba(255, 254, 249, 0.78);
+    border: 1px solid rgba(196, 155, 99, 0.28);
+    border-radius: 22px;
+    box-shadow: 0 4px 32px rgba(196, 155, 99, 0.14),
+                0 1px 4px rgba(196, 155, 99, 0.08);
   }
 
-  @keyframes cardIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── Left side: icon ── */
   .icon-side {
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
   }
 
-  .fridge-emoji {
-    font-size: 100px;
-    display: block;
-    animation: iconPop 0.8s 0.3s ease-out both;
+  .main-emoji {
+    font-size: 96px;
+    line-height: 1;
   }
 
-  @keyframes iconPop {
-    0%   { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  .fridge-emoji .pulse {
-    display: inline-block;
-    animation: iconBreathe 3s ease-in-out infinite;
-  }
-
-  @keyframes iconBreathe {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.06); }
-  }
-
-  /* ── Right side: text ── */
   .text-side {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
+  }
+
+  .script-label {
+    font-family: 'Sacramento', cursive;
+    font-size: 34px;
+    color: var(--brown-light);
+    line-height: 1;
+    margin-bottom: 2px;
   }
 
   .title-line {
@@ -122,109 +101,81 @@
     font-weight: 700;
     font-size: 62px;
     line-height: 1.05;
-    color: var(--text-primary);
+    color: var(--brown-dark);
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
 
-  .title-line .mai {
-    display: inline-block;
-    animation: nameSlide 0.8s 0.5s ease-out both;
-    background: linear-gradient(135deg, var(--accent-rose), var(--accent-blush));
+  .title-line .name-mai {
+    background: linear-gradient(135deg, #c49b63, #e8849a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .title-line .amp {
-    display: inline-block;
-    animation: nameSlide 0.8s 0.65s ease-out both;
+  .title-line .name-amp {
     font-style: italic;
-    -webkit-text-fill-color: var(--text-muted);
-    margin: 0 2px;
+    -webkit-text-fill-color: var(--brown-light);
+    margin: 0 3px;
     font-size: 0.65em;
   }
 
-  .title-line .binh {
-    display: inline-block;
-    animation: nameSlide 0.8s 0.8s ease-out both;
-    background: linear-gradient(135deg, var(--accent-mint), var(--accent-yellow));
+  .title-line .name-binh {
+    background: linear-gradient(135deg, #5c3317, #c49b63);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .title-line .possessive {
-    display: inline-block;
-    animation: nameSlide 0.8s 0.9s ease-out both;
-    -webkit-text-fill-color: var(--text-muted);
+  .title-line .name-possessive {
+    -webkit-text-fill-color: var(--brown-light);
     font-size: 0.78em;
   }
 
   .title-line .shower-word {
-    display: inline-block;
-    animation: nameSlide 0.8s 1s ease-out both;
-    background: linear-gradient(135deg, var(--accent-lavender), var(--accent-blush));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-text-fill-color: var(--brown-dark);
     margin-left: 8px;
   }
 
-  @keyframes nameSlide {
-    0%   { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  /* ── Divider ── */
   .divider {
-    width: 100px;
-    height: 3px;
-    margin: 14px 0;
-    background: linear-gradient(90deg, var(--accent-blush), var(--accent-soft-mint), transparent);
-    animation: fadeIn 0.8s 1.3s both;
+    width: 110px;
+    height: 2px;
+    margin: 14px 0 12px;
+    background: linear-gradient(90deg, var(--gold), var(--pink), transparent);
     border-radius: 2px;
   }
 
-  @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-
-  /* ── Tagline ── */
   .tagline {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-    color: var(--text-muted);
-    letter-spacing: 0.25em;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--brown-light);
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    animation: fadeIn 0.8s 1.5s both;
   }
 
-  /* ── Clock ── */
   .clock {
     position: fixed;
-    bottom: 22px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 600;
-    font-size: 16px;
-    color: var(--text-primary);
+    font-size: 14px;
+    color: var(--brown);
     letter-spacing: 0.08em;
-    animation: fadeIn 0.8s 1.8s both;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(168, 144, 204, 0.12);
-    padding: 10px 28px;
+    background: rgba(255, 254, 249, 0.9);
+    border: 1px solid rgba(196, 155, 99, 0.22);
+    padding: 9px 24px;
     border-radius: 999px;
     white-space: nowrap;
-    box-shadow: 0 2px 12px rgba(168, 144, 204, 0.06);
+    box-shadow: 0 2px 10px rgba(196, 155, 99, 0.1);
   }
-
 </style>
 </head>
 <body>
 
-  <!-- Fixed decorative emojis -->
   <span class="deco d1">🍼</span>
   <span class="deco d2">👶</span>
   <span class="deco d3">🧸</span>
@@ -236,21 +187,20 @@
   <span class="deco d9">💛</span>
   <span class="deco d10">🤍</span>
 
-  <!-- Main content -->
   <div class="content">
     <div class="icon-side">
-      <div class="fridge-emoji"><span class="pulse">🍼</span></div>
+      <div class="main-emoji">🍼</div>
     </div>
     <div class="text-side">
+      <div class="script-label">Café Bébé</div>
       <div class="title-line">
-        <span class="mai">Mai</span><span class="amp">&</span><span class="binh">Binh</span><span class="possessive">'s</span><span class="shower-word">Baby Shower</span>
+        <span class="name-mai">Mai</span><span class="name-amp">&amp;</span><span class="name-binh">Binh</span><span class="name-possessive">'s</span><span class="shower-word"> Baby Shower</span>
       </div>
       <div class="divider"></div>
       <div class="tagline">A Little One Is On The Way</div>
     </div>
   </div>
 
-  <!-- Clock -->
   <div class="clock" id="clock"></div>
 
   <script>
@@ -261,14 +211,11 @@
       var ampm = h >= 12 ? 'PM' : 'AM';
       h = h % 12 || 12;
       m = m < 10 ? '0' + m : m;
-
-      var days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-      var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
-                    'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
+      var days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+      var months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
       document.getElementById('clock').textContent =
         days[now.getDay()] + '  ' + months[now.getMonth()] + ' ' + now.getDate() +
-        '  \u2022  ' + h + ':' + m + ' ' + ampm;
+        '  •  ' + h + ':' + m + ' ' + ampm;
     }
     updateClock();
     setInterval(updateClock, 30000);
